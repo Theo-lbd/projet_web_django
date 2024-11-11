@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des compétences</title>
+</head>
+<body>
+    <h1>Liste des compétences</h1>
+    <ul>
+        {% for competence in competences %}
+            <li>{{ competence.name }}</li>
+        {% empty %}
+            <li>Aucune compétence disponible.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

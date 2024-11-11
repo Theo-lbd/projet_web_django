@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes Compétences</title>
+</head>
+<body>
+    <h1>Mes Compétences</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for competence in competences %}
+            <label>
+                <input type="checkbox" name="competences" value="{{ competence.id }}" {% if competence in user.profile.competences.all %}checked{% endif %}>
+                {{ competence.name }}
+            </label>
+            <br>
+        {% endfor %}
+        <button type="submit">Enregistrer</button>
+    </form>
+</body>
+</html>

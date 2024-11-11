@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Créneaux disponibles</title>
+</head>
+<body>
+    <h1>Créneaux disponibles</h1>
+    <ul>
+        {% for slot in slots %}
+            <li>{{ slot.date }} - Compétence : {{ slot.competence.name }}</li>
+        {% empty %}
+            <li>Aucun créneau disponible pour le moment.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
