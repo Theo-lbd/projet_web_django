@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes créneaux</title>
+</head>
+<body>
+    <h1>Mes créneaux</h1>
+    <ul>
+        {% for slot in slots %}
+            <li>{{ slot.date }} - {{ slot.competence.name }} -
+                <a href="{% url 'delete_slot' slot.id %}">Supprimer</a>
+            </li>
+        {% empty %}
+            <li>Vous n'avez pas encore de créneaux.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_slot' %}">Ajouter un créneau</a>
+</body>
+</html>
