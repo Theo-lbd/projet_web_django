@@ -11,6 +11,10 @@ urlpatterns = [
     path('mes-creneaux/', views.my_slots, name='my_slots'),
     path('supprimer-creneau/<int:slot_id>/', views.delete_slot, name='delete_slot'),
     path('ajouter-creneau/', views.add_slot, name='add_slot'),
+    path('demandes-aide/', views.help_requests, name='help_requests'),
+    path('mes-demandes/', views.my_requests, name='my_requests'),
+    path('aide-disponible/', views.available_help, name='available_help'),
+    path('se-proposer-aide/<int:activity_id>/', views.volunteer_for_help, name='volunteer_for_help'),
 
 ]
 

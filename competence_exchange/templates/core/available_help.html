@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block title %}Aide disponible{% endblock %}
+
+{% block content %}
+    <h1>Aide disponible pour des compétences que vous ne possédez pas</h1>
+    <ul>
+        {% for slot in available_slots %}
+            <li>
+                Compétence : {{ slot.competence.name }} <br>
+                Date : {{ slot.date }} <br>
+                Proposé par : {{ slot.user.username }}
+            </li>
+        {% empty %}
+            <li>Pas de créneaux disponibles pour l'instant.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
