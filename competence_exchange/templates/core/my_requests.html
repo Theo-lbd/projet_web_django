@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "core/base.html" %}
+
+{% block title %}Mes demandes d'aide{% endblock %}
+
+{% block content %}
+    <h1>Mes demandes d'aide</h1>
+    <ul>
+        {% for request in user_requests %}
+            <li>
+                Activité : {{ request.description }} <br>
+                Compétence requise : {{ request.competence_needed.name }} <br>
+                Date : {{ request.slot.date }}
+            </li>
+        {% empty %}
+            <li>Vous n'avez pas encore de demandes d'aide.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

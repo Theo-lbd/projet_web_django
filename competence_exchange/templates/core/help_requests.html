@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "core/base.html" %}
+
+{% block title %}Demandes d'aide{% endblock %}
+
+{% block content %}
+    <h1>Demandes d'aide pour vos compétences</h1>
+    <ul>
+        {% for request in help_requests %}
+            <li>
+                Activité : {{ request.description }} <br>
+                Compétence requise : {{ request.competence_needed.name }} <br>
+                Date : {{ request.slot.date }} <br>
+                Demandeur : {{ request.requester.username }} <br>
+                <a href="{% url 'volunteer_for_help' request.id %}">Se proposer pour aider</a>
+            </li>
+        {% empty %}
+            <li>Pas de demandes d'aide pour vos compétences pour le moment.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

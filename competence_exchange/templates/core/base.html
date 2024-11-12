@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
 </head>
 <body>
-$END$
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'available_slots' %}">Créneaux disponibles</a></li>
+                <li><a href="{% url 'competence_list' %}">Liste des compétences</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'user_competences' %}">Mes compétences</a></li>
+                    <li><a href="{% url 'my_slots' %}">Mes créneaux</a></li>
+                    <li><a href="{% url 'help_requests' %}">Demandes d'aide pour mes compétences</a></li>
+                    <li><a href="{% url 'available_help' %}">Aide disponible</a></li>
+                    <li><a href="{% url 'my_requests' %}">Mes demandes d'aide</a></li>
+                    <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 </body>
 </html>

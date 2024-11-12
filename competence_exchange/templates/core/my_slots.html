@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Mes créneaux</title>
-</head>
-<body>
+{% extends "core/base.html" %}
+
+{% block title %}Mes créneaux{% endblock %}
+
+{% block content %}
     <h1>Mes créneaux</h1>
     <ul>
         {% for slot in slots %}
-            <li>
-                Date : {{ slot.date }} - Compétence : {{ slot.competence.name }} -
+            <li>Date : {{ slot.date }} - Compétence : {{ slot.competence.name }} - 
                 Objectif : {% if slot.purpose == 'aid' %}Pour aider{% else %}Demande d'aide{% endif %}
                 - <a href="{% url 'delete_slot' slot.id %}">Supprimer</a>
             </li>
@@ -18,5 +15,4 @@
         {% endfor %}
     </ul>
     <a href="{% url 'add_slot' %}">Ajouter un créneau</a>
-</body>
-</html>
+{% endblock %}
