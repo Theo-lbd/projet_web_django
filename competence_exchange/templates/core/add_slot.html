@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Ajouter un créneau</title>
 </head>
 <body>
-$END$
+    <h1>Ajouter un créneau</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="date">Date :</label>
+        <input type="date" name="date" id="date" required>
+        <br>
+        <label for="competence">Compétence :</label>
+        <select name="competence" id="competence" required>
+            {% for competence in competences %}
+                <option value="{{ competence.id }}">{{ competence.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="purpose">Objectif :</label>
+        <select name="purpose" id="purpose">
+            <option value="aid">Pour aider</option>
+            <option value="request">Demande d’aide</option>
+        </select>
+        <br>
+        <button type="submit">Enregistrer le créneau</button>
+    </form>
 </body>
 </html>
