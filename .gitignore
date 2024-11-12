@@ -21,8 +21,8 @@ instance/
 .pytest_cache/
 .coverage
 htmlcov/
+competence_exchange/core/migrations/
 core/migrations/
-
 dist/
 build/
 *.egg-info/
