@@ -8,8 +8,10 @@
     <h1>Mes créneaux</h1>
     <ul>
         {% for slot in slots %}
-            <li>{{ slot.date }} - {{ slot.competence.name }} -
-                <a href="{% url 'delete_slot' slot.id %}">Supprimer</a>
+            <li>
+                Date : {{ slot.date }} - Compétence : {{ slot.competence.name }} -
+                Objectif : {% if slot.purpose == 'aid' %}Pour aider{% else %}Demande d'aide{% endif %}
+                - <a href="{% url 'delete_slot' slot.id %}">Supprimer</a>
             </li>
         {% empty %}
             <li>Vous n'avez pas encore de créneaux.</li>
