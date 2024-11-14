@@ -14,6 +14,7 @@ urlpatterns = [
     path('demandes-aide/', views.help_requests, name='help_requests'),
     path('mes-demandes/', views.my_requests, name='my_requests'),
     path('aide-disponible/', views.available_help, name='available_help'),
+    path('contact-info/<int:activity_id>/', views.contact_info, name='contact_info'),
     path('se-proposer-aide/<int:activity_id>/', views.volunteer_for_help, name='volunteer_for_help'),
 
 ]
