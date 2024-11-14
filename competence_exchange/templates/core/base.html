@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
-    <title>{% block title %}Mon Site{% endblock %}</title>
-    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Application{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'available_slots' %}">Créneaux disponibles</a></li>
-                <li><a href="{% url 'competence_list' %}">Liste des compétences</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'user_competences' %}">Mes compétences</a></li>
-                    <li><a href="{% url 'my_slots' %}">Mes créneaux</a></li>
-                    <li><a href="{% url 'help_requests' %}">Demandes d'aide pour mes compétences</a></li>
-                    <li><a href="{% url 'available_help' %}">Aide disponible</a></li>
-                    <li><a href="{% url 'my_requests' %}">Mes demandes d'aide</a></li>
-                    <li><a href="{% url 'logout' %}">Déconnexion</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Connexion</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Navigation -->
+    <header class="bg-blue-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Échange de Compétences</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="{% url 'available_slots' %}" class="{% if request.resolver_match.url_name == 'available_slots' %}text-orange-500{% endif %} hover:underline">Créneaux disponibles</a></li>
+                    <li><a href="{% url 'competence_list' %}" class="{% if request.resolver_match.url_name == 'competence_list' %}text-orange-500{% endif %} hover:underline">Liste des compétences</a></li>
+                    <li><a href="{% url 'help_requests' %}" class="{% if request.resolver_match.url_name == 'help_requests' %}text-orange-500{% endif %} hover:underline">Demandes d'aide</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'user_competences' %}" class="{% if request.resolver_match.url_name == 'user_competences' %}text-orange-500{% endif %} hover:underline">Mes compétences</a></li>
+                        <li><a href="{% url 'my_slots' %}" class="{% if request.resolver_match.url_name == 'my_slots' %}text-orange-500{% endif %} hover:underline">Mes créneaux</a></li>
+                        <li><a href="{% url 'add_slot' %}" class="{% if request.resolver_match.url_name == 'add_slot' %}text-orange-500{% endif %} hover:underline">Ajouter un créneau</a></li>
+                        <li><a href="{% url 'logout' %}" class="hover:underline">Déconnexion</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}" class="hover:underline">Connexion</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
+    <!-- Contenu principal -->
+    <main class="container mx-auto p-6">
         {% block content %}{% endblock %}
     </main>
 </body>

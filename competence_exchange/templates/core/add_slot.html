@@ -3,42 +3,40 @@
 {% block title %}Ajouter un créneau{% endblock %}
 
 {% block content %}
-    <h1>Ajouter un créneau</h1>
-    <form method="post">
+    <h1 class="text-2xl font-semibold mb-4">Ajouter un créneau</h1>
+    <form method="post" class="space-y-4 bg-white p-6 rounded shadow-md">
         {% csrf_token %}
-        <label for="date">Date :</label>
-        <input type="date" name="date" id="date" required>
-        <br>
-        <label for="competence">Compétence :</label>
-        <select name="competence" id="competence" required>
-            {% for competence in competences %}
-                <option value="{{ competence.id }}">{{ competence.name }}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <label for="purpose">Objectif :</label>
-        <select name="purpose" id="purpose" onchange="toggleDescriptionField()">
-            <option value="aid">Pour aider</option>
-            <option value="request">Demande d’aide</option>
-        </select>
-        <br>
-        <div id="descriptionField" style="display: none;">
-            <label for="description">Description de l'activité :</label>
-            <textarea name="description" id="description"></textarea>
+        <div>
+            <label for="date" class="block text-sm font-medium text-gray-700">Date :</label>
+            <input type="date" name="date" id="date" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
         </div>
-        <br>
-        <button type="submit">Enregistrer le créneau</button>
+        <div>
+            <label for="competence" class="block text-sm font-medium text-gray-700">Compétence :</label>
+            <select name="competence" id="competence" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                {% for competence in competences %}
+                    <option value="{{ competence.id }}">{{ competence.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="purpose" class="block text-sm font-medium text-gray-700">Objectif :</label>
+            <select name="purpose" id="purpose" onchange="toggleDescriptionField()" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+                <option value="aid">Pour aider</option>
+                <option value="request">Demande d’aide</option>
+            </select>
+        </div>
+        <div id="descriptionField" style="display: none;">
+            <label for="description" class="block text-sm font-medium text-gray-700">Description de l'activité :</label>
+            <textarea name="description" id="description" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md shadow-md hover:bg-blue-700">Enregistrer le créneau</button>
     </form>
-
     <script>
         function toggleDescriptionField() {
-            const purpose = document.getElementById('purpose').value;
-            const descriptionField = document.getElementById('descriptionField');
-            if (purpose === 'request') {
-                descriptionField.style.display = 'block';
-            } else {
-                descriptionField.style.display = 'none';
-            }
+            let purpose = document.getElementById("purpose").value;
+            let descriptionField = document.getElementById("descriptionField");
+            descriptionField.style.display = purpose === "request" ? "block" : "none";
         }
+        document.addEventListener("DOMContentLoaded", toggleDescriptionField);
     </script>
 {% endblock %}

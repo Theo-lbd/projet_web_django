@@ -3,18 +3,21 @@
 {% block title %}Demandes d'aide{% endblock %}
 
 {% block content %}
-    <h1>Demandes d'aide pour vos compétences</h1>
-    <ul>
+    <h1 class="text-2xl font-semibold mb-4">Demandes d'aide pour vos compétences</h1>
+    <ul class="space-y-4">
         {% for request in help_requests %}
-            <li>
-                Activité : {{ request.description }} <br>
-                Compétence requise : {{ request.competence_needed.name }} <br>
-                Date : {{ request.slot.date }} <br>
-                Demandeur : {{ request.requester.username }} <br>
-                <a href="{% url 'volunteer_for_help' request.id %}">Se proposer pour aider</a>
+            <li class="p-4 bg-white rounded shadow-md">
+                <p><strong>Activité :</strong> {{ request.description }}</p>
+                <p><strong>Compétence requise :</strong> {{ request.competence_needed.name }}</p>
+                <p><strong>Date :</strong> {{ request.slot.date }}</p>
+                <p><strong>Demandeur :</strong> {{ request.requester.username }}</p>
+                <a href="{% url 'volunteer_for_help' request.id %}" class="text-blue-600 hover:underline">Se proposer pour aider</a>
+                {% if request.volunteer == user %}
+                    <a href="{% url 'contact_info' request.id %}" class="text-blue-600 hover:underline">Voir les informations de contact</a>
+                {% endif %}
             </li>
         {% empty %}
-            <li>Pas de demandes d'aide pour vos compétences pour le moment.</li>
+            <li class="text-gray-600">Pas de demandes d'aide disponibles pour vos compétences.</li>
         {% endfor %}
     </ul>
 {% endblock %}

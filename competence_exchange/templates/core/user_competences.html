@@ -3,16 +3,16 @@
 {% block title %}Mes Compétences{% endblock %}
 
 {% block content %}
-    <h1>Mes Compétences</h1>
-    <form method="post">
+    <h1 class="text-2xl font-semibold mb-4">Mes Compétences</h1>
+    <form method="post" class="space-y-2">
         {% csrf_token %}
         {% for competence in competences %}
-            <label>
-                <input type="checkbox" name="competences" value="{{ competence.id }}" {% if competence in user.profile.competences.all %}checked{% endif %}>
-                {{ competence.name }}
+            <label class="inline-flex items-center">
+                <input type="checkbox" name="competences" value="{{ competence.id }}" {% if competence in user.profile.competences.all %}checked{% endif %} class="form-checkbox">
+                <span class="ml-2">{{ competence.name }}</span>
             </label>
             <br>
         {% endfor %}
-        <button type="submit">Enregistrer</button>
+        <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-700">Enregistrer</button>
     </form>
 {% endblock %}

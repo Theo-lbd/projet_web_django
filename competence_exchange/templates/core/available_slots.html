@@ -1,14 +1,30 @@
 {% extends "core/base.html" %}
 
-{% block title %}Créneaux d'aide disponibles{% endblock %}
+{% block title %}Créneaux disponibles{% endblock %}
 
 {% block content %}
-    <h1>Créneaux d'aide disponibles</h1>
-    <ul>
+    <p>Nombre de créneaux disponibles : {{ slots.count }}</p>
+
+    <h1 class="text-2xl font-semibold mb-4">Créneaux disponibles</h1>
+    <ul class="space-y-4">
         {% for slot in slots %}
-            <li>Date : {{ slot.date }} - Compétence : {{ slot.competence.name }}</li>
+            <li class="p-4 bg-white rounded shadow-md">
+                <p><strong>Date :</strong> {{ slot.date }}</p>
+                <p><strong>Compétence :</strong> {{ slot.competence.name }}</p>
+                <p><strong>Objectif :</strong> Pour aider</p>
+
+                {# Vérifiez s'il y a une activité associée à ce créneau #}
+                {% if slot.activity_set.first %}
+                    {% with activity=slot.activity_set.first %}
+                        {% if request.user == activity.requester or request.user == activity.volunteer %}
+                            <a href="{% url 'contact_info' activity.id %}">Voir les informations de contact</a>
+                        {% endif %}
+                    {% endwith %}
+                {% endif %}
+
+            </li>
         {% empty %}
-            <li>Aucun créneau d'aide disponible pour le moment.</li>
+            <li class="text-gray-600">Aucun créneau disponible pour le moment.</li>
         {% endfor %}
     </ul>
 {% endblock %}

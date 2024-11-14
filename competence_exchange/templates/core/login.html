@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Connexion</h1>
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" name="username" id="username" required>
-        <br>
-        <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password" required>
-        <br>
-        <button type="submit">Se connecter</button>
-    </form>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-semibold mb-6">Connexion</h1>
+        <form method="post" action="{% url 'login' %}" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur :</label>
+                <input type="text" name="username" id="username" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe :</label>
+                <input type="password" name="password" id="password" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
+            </div>
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md shadow-md hover:bg-blue-700">Se connecter</button>
+        </form>
+    </div>
 </body>
 </html>

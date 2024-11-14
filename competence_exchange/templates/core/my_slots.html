@@ -3,16 +3,21 @@
 {% block title %}Mes créneaux{% endblock %}
 
 {% block content %}
-    <h1>Mes créneaux</h1>
-    <ul>
+    <h1 class="text-2xl font-semibold mb-4">Mes créneaux</h1>
+    <ul class="space-y-4">
         {% for slot in slots %}
-            <li>Date : {{ slot.date }} - Compétence : {{ slot.competence.name }} - 
-                Objectif : {% if slot.purpose == 'aid' %}Pour aider{% else %}Demande d'aide{% endif %}
-                - <a href="{% url 'delete_slot' slot.id %}">Supprimer</a>
+            <li class="p-4 bg-white rounded shadow-md">
+                <p><strong>Date :</strong> {{ slot.date }}</p>
+                <p><strong>Compétence :</strong> {{ slot.competence.name }}</p>
+                <p><strong>Objectif :</strong> {% if slot.purpose == 'aid' %}Pour aider{% else %}Demande d'aide{% endif %}</p>
+                {% if slot.purpose == 'request' and slot.activity_set.first %}
+                    <p><strong>Description :</strong> {{ slot.activity_set.first.description }}</p>
+                {% endif %}
+                <a href="{% url 'delete_slot' slot.id %}" class="text-red-600 hover:underline">Supprimer</a>
             </li>
         {% empty %}
-            <li>Vous n'avez pas encore de créneaux.</li>
+            <li class="text-gray-600">Vous n'avez pas encore de créneaux.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'add_slot' %}">Ajouter un créneau</a>
+    <a href="{% url 'add_slot' %}" class="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700">Ajouter un créneau</a>
 {% endblock %}

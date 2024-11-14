@@ -3,16 +3,16 @@
 {% block title %}Mes demandes d'aide{% endblock %}
 
 {% block content %}
-    <h1>Mes demandes d'aide</h1>
-    <ul>
+    <h1 class="text-2xl font-semibold mb-4">Mes demandes d'aide</h1>
+    <ul class="space-y-4">
         {% for request in user_requests %}
-            <li>
-                Activité : {{ request.description }} <br>
-                Compétence requise : {{ request.competence_needed.name }} <br>
-                Date : {{ request.slot.date }}
+            <li class="p-4 bg-white rounded shadow-md">
+                <p><strong>Activité :</strong> {{ request.description }}</p>
+                <p><strong>Compétence requise :</strong> {{ request.competence_needed.name }}</p>
+                <p><strong>Date :</strong> {{ request.slot.date }}</p>
             </li>
         {% empty %}
-            <li>Vous n'avez pas encore de demandes d'aide.</li>
+            <li class="text-gray-600">Vous n'avez pas encore de demandes d'aide.</li>
         {% endfor %}
     </ul>
 {% endblock %}

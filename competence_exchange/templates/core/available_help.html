@@ -3,16 +3,16 @@
 {% block title %}Aide disponible{% endblock %}
 
 {% block content %}
-    <h1>Aide disponible pour des compétences que vous ne possédez pas</h1>
-    <ul>
+    <h1 class="text-2xl font-semibold mb-4">Aide disponible pour des compétences que vous ne possédez pas</h1>
+    <ul class="space-y-4">
         {% for slot in available_slots %}
-            <li>
-                Compétence : {{ slot.competence.name }} <br>
-                Date : {{ slot.date }} <br>
-                Proposé par : {{ slot.user.username }}
+            <li class="p-4 bg-white rounded shadow-md">
+                <p><strong>Compétence :</strong> {{ slot.competence.name }}</p>
+                <p><strong>Date :</strong> {{ slot.date }}</p>
+                <p><strong>Proposé par :</strong> {{ slot.user.username }}</p>
             </li>
         {% empty %}
-            <li>Pas de créneaux disponibles pour l'instant.</li>
+            <li class="text-gray-600">Pas de créneaux disponibles pour l'instant.</li>
         {% endfor %}
     </ul>
 {% endblock %}
