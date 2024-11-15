@@ -1,5 +1,7 @@
 ## Organisation et Structure du Code
-	- Le projet est divisé en plusieurs parties :
+
+- Le projet est divisé en plusieurs parties :
+
 	- ### Les modèles :
 		- **Category** : Catégorie de compétence.
 		- **Competence** : Compétence que les utilisateurs peuvent proposer ou rechercher.
@@ -28,6 +30,7 @@
 		- **my_requests.html** : Liste des demandes d’aide créées par l’utilisateur.
 		- **my_slots.html** : Liste des créneaux créés par l’utilisateur, avec option de suppression et ajout.
 		- **user_competences.html** : Formulaire de sélection des compétences que l’utilisateur souhaite proposer.
+
 - ## Résumé des Classes de Tests
 	- Les tests sont organisés en quatre classes, chacune vérifiant le fonctionnement de modèles spécifiques : **Competence**, **Slot**, **Activity**, et **Profile**.
 	- ### CompetenceModelTest :
@@ -51,7 +54,7 @@
 			- **test_profile_creation** : Vérifie que le profil est bien associé à l’utilisateur lors de sa création.
 			- **test_add_competence** : Vérifie qu’une compétence peut être ajoutée au profil de l’utilisateur.
 			- **test_str_method** : Vérifie que la méthode `__str__` retourne une description correcte du profil sous forme de chaîne.
--
+
 - ## Diagramme de cas d'utilisation
 	- Diagramme de Cas d'Utilisation - Explication
 		- **Acteurs**
@@ -66,8 +69,7 @@
 			- **Consulter les demandes d'aide** : Voir les demandes d'aide des autres utilisateurs pour des compétences qu'il possède.
 			- **Se proposer pour aider** : Indiquer sa disponibilité pour une demande d'aide spécifique.
 			- **Consulter les créneaux d'aide pour soi-même** : Voir les créneaux où un autre utilisateur est disponible pour l'aider dans une compétence qu'il ne possède pas.
-			-
--
+
 - ## Diagramme de Classes - Explication
 	- **User** :
 		- Représente l'utilisateur de l'application (hérité de Django).
