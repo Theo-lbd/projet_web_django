@@ -17,3 +17,9 @@ Cette application Django permet aux utilisateurs d'échanger des compétences en
 * **Consulter les demandes d’aide correspondantes à ses compétences** : Voir les demandes d’aide d’autres utilisateurs dans les compétences qu’il possède et se proposer comme volontaire.
 * **Voir les créneaux d’aide disponibles dans les compétences qu’il ne possède pas** : Consulter les créneaux où d’autres utilisateurs proposent de l’aide dans les compétences qu’il ne possède pas.
 * **Informations de contact** : Une fois volontaire pour un créneau, accéder aux informations de contact du demandeur d’aide.
+
+## Identifiants des comptes utilisateurs
+
+* admin : theo / mdp : 123
+* user : michel / mdp : Michelmotdepasse
+* user : pierre / mdp : Pierremotdepasse
