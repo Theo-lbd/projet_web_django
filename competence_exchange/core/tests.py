@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from .models import Competence, Slot, Activity, Profile, Category, create_user_profile
+from .models import Competence, Slot, Activity, Profile, Category
 from datetime import date
 
 
@@ -124,7 +124,7 @@ class ProfileModelTest(TestCase):
         self.user = User.objects.create_user(username="profileuser")
 
         # Récupère ou crée un profil pour l'utilisateur
-        self.profile, created = Profile.objects.get_or_create(user=self.user)
+        self.profile, _ = Profile.objects.get_or_create(user=self.user)
 
         # Crée une compétence et l'ajoute au profil
         self.competence = Competence.objects.create(name="Cuisine")
