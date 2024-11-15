@@ -9,7 +9,7 @@ class Category(models.Model):
     """
     Modèle représentant une catégorie de compétence.
 
-    Attributes :
+    Attributes:
         name (CharField): Le nom de la catégorie.
     """
     name = models.CharField("Nom de la catégorie", max_length=100, unique=True)
@@ -26,7 +26,7 @@ class Competence(models.Model):
     """
     Modèle représentant une compétence.
 
-    Attributes :
+    Attributes:
         name (CharField): Le nom de la compétence.
         Category (ForeignKey): La catégorie associée à cette compétence.
     """
