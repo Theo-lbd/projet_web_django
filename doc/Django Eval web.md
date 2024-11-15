@@ -1,0 +1,91 @@
+## Organisation et Structure du Code
+	- Le projet est divisé en plusieurs parties :
+	- ### Les modèles :
+		- **Category** : Catégorie de compétence.
+		- **Competence** : Compétence que les utilisateurs peuvent proposer ou rechercher.
+		- **Slot** : Représente un créneau où l’utilisateur peut proposer ou demander de l’aide.
+		- **Activity** : Représente une demande d’aide pour une activité, nécessitant une compétence spécifique.
+		- **Profile** : Associe chaque utilisateur à ses compétences, facilitant le filtrage des demandes en fonction des compétences possédées.
+	- ### Les Vues et Contrôleurs :
+		- **available_slots** : Affiche les créneaux d’aide anonymisés pour les visiteurs.
+		- **competence_list** : Liste des compétences disponibles, organisées par catégories.
+		- **user_competences** : Permet aux utilisateurs de sélectionner les compétences qu’ils possèdent.
+		- **add_slot** : Formulaire pour créer un créneau de disponibilité, pour aider ou demander de l’aide.
+		- **my_slots** : Liste des créneaux créés par l’utilisateur, avec option de suppression.
+		- **help_requests** : Affiche les demandes d’aide dans les compétences de l’utilisateur, avec possibilité de se proposer.
+		- **available_help** : Liste des créneaux d’aide disponibles dans les compétences non possédées.
+		- **volunteer_for_help** : Enregistre l’utilisateur comme volontaire pour une demande d’aide.
+		- **contact_info** : Affiche les informations de contact d’un utilisateur impliqué dans un créneau commun.
+	- ### Templates HTML :
+		- **base.html** : Structure commune pour toutes les pages, avec entête, navigation et pied de page.
+		- **add_slot.html** : Formulaire pour ajouter un créneau de disponibilité, permettant de proposer ou demander de l’aide.
+		- **available_help.html** : Liste des créneaux où d’autres utilisateurs proposent de l’aide dans des compétences non possédées par l’utilisateur.
+		- **available_slots.html** : Créneaux d’aide disponibles pour tous, affichés anonymement, avec compétence, date, et objectif.
+		- **competence_list.html** : Affiche la liste des compétences par catégorie.
+		- **contact_info.html** : Informations de contact d’un utilisateur impliqué dans une demande d’aide commune (prénom, nom, email).
+		- **help_requests.html** : Liste des demandes d’aide correspondant aux compétences de l’utilisateur, avec option pour se proposer.
+		- **login.html** : Formulaire de connexion avec nom d’utilisateur et mot de passe.
+		- **my_requests.html** : Liste des demandes d’aide créées par l’utilisateur.
+		- **my_slots.html** : Liste des créneaux créés par l’utilisateur, avec option de suppression et ajout.
+		- **user_competences.html** : Formulaire de sélection des compétences que l’utilisateur souhaite proposer.
+- ## Résumé des Classes de Tests
+	- Les tests sont organisés en quatre classes, chacune vérifiant le fonctionnement de modèles spécifiques : **Competence**, **Slot**, **Activity**, et **Profile**.
+	- ### CompetenceModelTest :
+		- **Objectif** : Tester la création de compétences.
+		- **Tests** :
+			- **test_competence_creation** : Vérifie que le nom de la compétence est correctement enregistré lors de sa création.
+			- **test_str_method** : Valide la méthode `__str__`, qui doit retourner le nom de la compétence.
+	- ### SlotModelTest :
+		- **Objectif** : Tester la création et les informations d’un créneau (**Slot**).
+		- **Tests** :
+			- **test_slot_creation** : Vérifie que les informations (date, utilisateur, compétence, disponibilité, objectif) sont bien enregistrées.
+			- **test_str_method** : Vérifie que la méthode `__str__` retourne une description correcte du créneau, incluant la date, la compétence, la disponibilité et l’objectif.
+	- ### ActivityModelTest :
+		- **Objectif** : Tester la création d’une activité (demande d’aide) liée à une compétence et un créneau.
+		- **Tests** :
+			- **test_activity_creation** : Vérifie que les informations (description, demandeur, compétence requise, créneau) sont bien enregistrées.
+			- **test_str_method** : Valide la méthode `__str__` pour s’assurer qu’elle retourne une chaîne avec la description de l'activité et la compétence requise.
+	- ### ProfileModelTest :
+		- **Objectif** : Tester la création de profils utilisateur et l’ajout de compétences au profil.
+		- **Tests** :
+			- **test_profile_creation** : Vérifie que le profil est bien associé à l’utilisateur lors de sa création.
+			- **test_add_competence** : Vérifie qu’une compétence peut être ajoutée au profil de l’utilisateur.
+			- **test_str_method** : Vérifie que la méthode `__str__` retourne une description correcte du profil sous forme de chaîne.
+-
+- ## Diagramme de cas d'utilisation
+	- Diagramme de Cas d'Utilisation - Explication
+		- **Acteurs**
+			- **Non connecté** : Un utilisateur non authentifié peut accéder à certaines fonctionnalités publiques.
+			- **Connecté** : Un utilisateur authentifié peut accéder à des fonctionnalités supplémentaires pour gérer ses compétences et créneaux.
+		- **Cas d'utilisation pour un utilisateur non connecté**
+			- **Consulter les créneaux disponibles** : Accéder aux créneaux proposés par d'autres utilisateurs pour aider, sans afficher d'informations personnelles.
+			- **Consulter la liste de compétences** : Voir les compétences disponibles dans l'application.
+		- **Cas d'utilisation pour un utilisateur connecté**
+			- **Gérer ses compétences** : Sélectionner et gérer les compétences que l'utilisateur est prêt à offrir.
+			- **Créer des créneaux d'aide** : Définir ses créneaux de disponibilité pour offrir de l'aide.
+			- **Consulter les demandes d'aide** : Voir les demandes d'aide des autres utilisateurs pour des compétences qu'il possède.
+			- **Se proposer pour aider** : Indiquer sa disponibilité pour une demande d'aide spécifique.
+			- **Consulter les créneaux d'aide pour soi-même** : Voir les créneaux où un autre utilisateur est disponible pour l'aider dans une compétence qu'il ne possède pas.
+			-
+-
+- ## Diagramme de Classes - Explication
+	- **User** :
+		- Représente l'utilisateur de l'application (hérité de Django).
+		- Lié à un **Profile** (1-0..1) pour stocker les compétences.
+		- Possède plusieurs **Slots** (1-0..*) pour indiquer sa disponibilité.
+		- Crée des **Activities** (1-0..*) pour demander de l'aide.
+	- **Profile** :
+		- Complément du `User` avec ses compétences.
+		- Relie un utilisateur à plusieurs **Competences** (1-0..*).
+	- **Competence** :
+		- Représente une compétence (ex : jardinage).
+		- Associée à plusieurs **Profiles** (1-0..*) et **Slots** (1-0..1).
+		- Nécessaire pour plusieurs **Activities** (1-0..*).
+	- **Slot** :
+		- Créneau de disponibilité avec une date, disponibilité et objectif.
+		- Lié à un seul **User** (1-1) et une **Competence** (1-1).
+		- Peut être associé à une **Activity** (1-0..1) si utilisé pour une demande d’aide.
+	- **Activity** :
+		- Demande d’aide pour une compétence spécifique.
+		- Associée à un **User** (demandeur), une **Competence**, et un **Slot** (tous en 1-1).
+	- Ce modèle permet de gérer les compétences, créneaux et demandes d’aide de manière efficace et flexible.
